@@ -1,0 +1,202 @@
+{
+    "title":
+    [
+      "id",
+      "description",
+      "groups",
+      "segments",
+      "sites",
+      "from",
+      "to"
+    ],
+    "data": [
+    {
+        "id": 817,
+        "description": "PSD-8961 New deal UK CORE",
+        "groups" : [
+            {
+                "id": 1534,
+                "proportion": 100
+            }
+        ],
+        "segments": [
+            {
+                "type": "KVK",
+                "value": "HF",
+                "min": "",
+                "max": ""
+            },
+            {
+                "type": "KVK",
+                "value": "FH",
+                "min": "",
+                "max": ""
+            },
+            {
+                "type": "KVK",
+                "value": "FF",
+                "min": "",
+                "max": ""
+            },
+            {
+                "type": "KVK",
+                "value": "HH",
+                "min": "",
+                "max": ""
+            },
+            {
+                "type": "longitude",
+                "value": "",
+                "min": -1.346,
+                "max": 1.602
+            },
+            {
+                "type": "latitude",
+                "value": "",
+                "min": 51.075,
+                "max": 52.109
+            }
+        ],
+        "sites": [
+            "ad.mat.uk", "ad.otm.uk", "adt.mat.uk", "adt.otm.uk", "ip.mat.uk", "ip.otm.uk", "ipa.mat.uk", "ipa.otm.uk", "pft.bot.mat.uk", "wad.mat.uk",
+            "wad.our.uk", "wam.mat.uk", "wam.our.uk"
+        ],
+        "from": "2019-04-25 00:00:00",
+        "to": "2019-12-19 00:00:00"
+    },
+    {
+        "id": 100,
+        "description": "New Funnel + reco Funnel (UK)",
+        "groups" : [
+            {
+                "id": 100,
+                "proportion": 50
+            },
+            {
+                "id": 101,
+                "proportion": 50
+            }
+        ],
+        "segments": [
+            {
+                "type": "KVK",
+                "value": "HF",
+                "min": "",
+                "max": ""
+            },
+            {
+                "type": "KVK",
+                "value": "FH",
+                "min": "",
+                "max": ""
+            },
+            {
+                "type": "KVK",
+                "value": "FF",
+                "min": "",
+                "max": ""
+            },
+            {
+                "type": "KVK",
+                "value": "HH",
+                "min": "",
+                "max": ""
+            }
+        ],
+        "sites": [
+            "MATCH_UK", "wp.lex.nl"
+        ],
+        "from": "2011-11-10 00:00:00",
+        "to": "2012-03-20 00:00:00"
+    },
+    {
+        "id": 820,
+        "description": "PSD-9020 Profil Full mobile",
+        "groups" : [
+            {
+                "id": 1539,
+                "proportion": 50
+            },
+            {
+                "id": 1540,
+                "proportion": 50
+            }
+        ],
+        "segments": [
+            {
+                "type": "KVK",
+                "value": "HF",
+                "min": "",
+                "max": ""
+            },
+            {
+                "type": "KVK",
+                "value": "FH",
+                "min": "",
+                "max": ""
+            },
+            {
+                "type": "KVK",
+                "value": "FF",
+                "min": "",
+                "max": ""
+            },
+            {
+                "type": "KVK",
+                "value": "HH",
+                "min": "",
+                "max": ""
+            }
+        ],
+        "sites": [
+            "wam.mat.uk", "wam.mee.it", "wam.mee.sp"
+        ],
+        "from": "2019-04-18 00:00:00",
+        "to": "2020-01-29 00:00:00"
+    },
+    {
+        "id": 821,
+        "description": "PSD-9020 Profile full desktop",
+        "groups" : [
+            {
+                "id": 1541,
+                "proportion": 50
+            },
+            {
+                "id": 1542,
+                "proportion": 50
+            }
+        ],
+        "segments": [
+            {
+                "type": "KVK",
+                "value": "HF",
+                "min": "",
+                "max": ""
+            },
+            {
+                "type": "KVK",
+                "value": "FH",
+                "min": "",
+                "max": ""
+            },
+            {
+                "type": "KVK",
+                "value": "FF",
+                "min": "",
+                "max": ""
+            },
+            {
+                "type": "KVK",
+                "value": "HH",
+                "min": "",
+                "max": ""
+            }
+        ],
+        "sites": [
+            "wad.lex.nl", "wad.mee.it"
+        ],
+        "from": "2019-04-18 00:00:00",
+        "to": "2020-01-29 00:00:00"
+    } ]
+}
