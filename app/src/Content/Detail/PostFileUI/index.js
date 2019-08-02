@@ -27,18 +27,17 @@ const useStyles = makeStyles(theme => ({
   input: {
     display: 'none',
   },
+  button : {
+    marginRight : theme.spacing(2),
+  }
 }));
 
 function PostFileUI(props) 
 {
 	const classes = useStyles();
 
-	const [open, setOpen] = React.useState(false);
-
-	function handleUpload()
-	{
-
-	}
+  const [open, setOpen] = React.useState(false);
+  const [file, setFile] = React.useState(undefined)
 
 	function handleClose() 
 	{
@@ -48,6 +47,38 @@ function PostFileUI(props)
 	function handleClick()
 	{
     setOpen(true);
+  }
+  
+  function handleFile(file)
+  {
+    if (file !== undefined)
+    {
+      setFile(file)
+    }
+    else
+    {
+      setFile(undefined)
+    }
+    
+  }
+
+	function handleUpload()
+	{
+    fetch('http://192.168.197.78:8080/abtest/'+props.id+'/analysis', { // Your POST endpoint
+    method: 'POST',
+    headers: {
+      // Content-Type may need to be completely **omitted**
+      // or you may need something
+      'Content-Type': 'multipart/form-data',
+    },
+      body: file // This is your file object
+    }).then(
+      response => response.json() // if the response is a JSON object
+    ).then(
+      success => console.log(success) // Handle the success response object
+    ).catch(
+      error => console.log(error) // Handle the error response object
+    );
 	}
 
 	return (
@@ -68,20 +99,21 @@ function PostFileUI(props)
 					<input
 						className={classes.input}
 						id="contained-button-file"
-						multiple
-						type="file"
+            type="file"
+            onChange={(e) => {handleFile(e.target.files[0])}}
 					/>
 					<label htmlFor="contained-button-file">
 						<Button variant="contained" component="span" className={classes.button}>
 							Browse
 						</Button>
+            {file !== undefined?file.name:"No file uploaded"}
 					</label>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={handleUpload} color="primary">
+          <Button onClick={handleUpload} disabled={file===undefined} color="primary">
             Upload
           </Button>
         </DialogActions>
