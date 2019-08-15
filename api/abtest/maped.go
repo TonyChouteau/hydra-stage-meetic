@@ -5,7 +5,6 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
-	"sync"
 	"time"
 )
 
@@ -41,8 +40,6 @@ func GetCountries() []string {
 type RepositoryMaped interface { // Conection type interface
 	GetConnection() string
 	GetCountries(string, string) []Abtest
-	GetGroups(int) []Group
-	GetSegments(int) []Segment
 }
 
 type MapedService struct {
@@ -63,22 +60,6 @@ func (s *MapedService) GetMaped(date string, device string) MapedCountries {
 
 	abtests := s.db.GetCountries(date, device)
 
-	wg := new(sync.WaitGroup)
-
-	for i, abtest := range abtests {
-		wg.Add(2)
-		go func(i int, abtest Abtest) {
-			defer wg.Done()
-			abtests[i].Groups = s.db.GetGroups(abtest.Id)
-		}(i, abtest)
-
-		go func(i int, abtest Abtest) {
-			defer wg.Done()
-			abtests[i].Segments = s.db.GetSegments(abtest.Id)
-		}(i, abtest)
-	}
-
-	wg.Wait()
 
 	fmt.Print("\nLoad abtests and groups : ")
 	fmt.Println(time.Now().Sub(timeStart))

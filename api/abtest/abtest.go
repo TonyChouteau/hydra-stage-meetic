@@ -2,7 +2,6 @@ package abtest
 
 import (
 	"fmt"
-	"sync"
 	"time"
 )
 
@@ -37,9 +36,6 @@ type RepositoryABtests interface { // Conection type interface
 	GetConnection() string
 	Count(string, string, string, string) int
 	GetActiveAbtests(int, int, string, string, string, string) []Abtest
-	GetSites(int) []string
-	GetGroups(int) []Group
-	GetSegments(int) []Segment
 	GetAbtest(string) Abtest
 }
 
@@ -67,24 +63,6 @@ func (s *AbtestService) Get(offset int, limit int, id string, name string, start
 	timeStart := time.Now()
 
 	abtests = s.db.GetActiveAbtests(offset, limit, id, name, start, end)
-
-	wg := new(sync.WaitGroup)
-
-	for i, abtest := range abtests {
-		//abtests[i].Sites = s.db.GetSites(abtest.Id)
-		wg.Add(2)
-		go func(i int, abtest Abtest) {
-			defer wg.Done()
-			abtests[i].Groups = s.db.GetGroups(abtest.Id)
-		}(i, abtest)
-
-		go func(i int, abtest Abtest) {
-			defer wg.Done()
-			abtests[i].Segments = s.db.GetSegments(abtest.Id)
-		}(i, abtest)
-	}
-
-	wg.Wait()
 
 	fmt.Print("\nLoad abtests from Database : ")
 	fmt.Println(time.Now().Sub(timeStart))
@@ -114,8 +92,6 @@ func (s *AbtestService) GetOne(id string) Abtest {
 
 	var abtest Abtest
 	abtest = s.db.GetAbtest(id)
-	abtest.Groups = s.db.GetGroups(abtest.Id)
-	abtest.Segments = s.db.GetSegments(abtest.Id)
 
 	//fmt.Println(abtest)
 
