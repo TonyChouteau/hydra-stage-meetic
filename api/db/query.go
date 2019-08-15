@@ -27,12 +27,12 @@ func (c *Connection) Count(id string, name string, start string, end string) int
 		fmt.Println(err)
 	}
 
-	fmt.Println("abtests :",abtests)
+	//fmt.Println("abtests :",abtests)
 
 	//dataRows := c.Query(``)
 	//defer dataRows.Close()
 
-	return 5//count
+	return len(abtests.Data)
 }
 
 func (c *Connection) GetActiveAbtests(offset int, limit int, id string, name string, start string, end string) []abtest.Abtest {
