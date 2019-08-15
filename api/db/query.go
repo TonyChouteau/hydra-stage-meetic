@@ -1,8 +1,10 @@
 package db
 
 import (
-	/*"encoding/json"
-	"io/ioutil"*/
+	"encoding/json"
+	"fmt"
+	"os"
+	"io/ioutil"
 
 	"github.com/TonyChouteau/hydra/api/abtest"
 )
@@ -12,10 +14,20 @@ import (
 //=============================
 
 func (c *Connection) Count(id string, name string, start string, end string) int {
+	
+	jsonFile, err := os.Open("abtests.json")
+	if err != nil {
+		fmt.Println(err)
+	}
+	byteValue, _ := ioutil.ReadAll(jsonFile)
 
-	/*file, _ := ioutil.ReadFile("abtests.json")
-	abtests = []abtest.Abtest{}
-	_ = json.Unmarshal([]byte(file), &abtests)*/
+	abtests := abtest.Abtests{}
+	err = json.Unmarshal(byteValue, &abtests)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println("abtests :",abtests)
 
 	//dataRows := c.Query(``)
 	//defer dataRows.Close()
