@@ -127,7 +127,7 @@ function DisplayMap(props)
     }
 
     return (
-      fetch("http://192.168.197.78:8080/maped-abtests?"+
+      fetch("http://vps.tonychouteau.fr:8080/maped-abtests?"+
       (date!==""?"date="+date.split("-").reverse().join("-"):"")+"&device="+device)
       .then(response => response.json())
       .then((jsonData) => {
