@@ -1,14 +1,10 @@
 package db
 
 import (
-	"bytes"
-	"fmt"
-	"strings"
-	"text/template"
-	"time"
+	/*"encoding/json"
+	"io/ioutil"*/
 
 	"github.com/TonyChouteau/hydra/api/abtest"
-	_ "gopkg.in/goracle.v2"
 )
 
 //=============================
@@ -17,17 +13,14 @@ import (
 
 func (c *Connection) Count(id string, name string, start string, end string) int {
 
-	dataRows := c.Query(``)
-	defer dataRows.Close()
+	/*file, _ := ioutil.ReadFile("abtests.json")
+	abtests = []abtest.Abtest{}
+	_ = json.Unmarshal([]byte(file), &abtests)*/
 
-	var count int
-	for dataRows.Next() {
-		dataRows.Scan(&count)
-	}
+	//dataRows := c.Query(``)
+	//defer dataRows.Close()
 
-	println(count)
-
-	return count
+	return 5//count
 }
 
 func (c *Connection) GetActiveAbtests(offset int, limit int, id string, name string, start string, end string) []abtest.Abtest {
@@ -40,12 +33,8 @@ func (c *Connection) GetActiveAbtests(offset int, limit int, id string, name str
 
 	//fmt.Println(start, end)
 
-	dataRows := c.Query(``)
+	/*dataRows := c.Query(``)
 
-	/* test.end_date > sysdate
-	AND test.start_date < sysdate
-	AND test.status <> 30
-	AND test.status <> 0*/
 
 	defer dataRows.Close()
 
@@ -66,28 +55,31 @@ func (c *Connection) GetActiveAbtests(offset int, limit int, id string, name str
 		new_abtest.Sites = sites
 
 		abtests = append(abtests, new_abtest)
-	}
+	}*/
 
 	return abtests
 }
 
 func (c *Connection) GetSites(abtestID int) []string {
 
-	dataRows := c.Query(``)
+	sites := []string{}
+	/*dataRows := c.Query(``)
 	defer dataRows.Close()
 
-	sites := []string{}
 	for dataRows.Next() {
 		var site string
 		dataRows.Scan(&site)
 		sites = append(sites, site)
 	}
+	*/
 
 	return sites
 }
 
 func (c *Connection) GetGroups(abtestID int) []abtest.Group {
-	rows := c.Query(``)
+	groups := []abtest.Group{}
+
+	/*rows := c.Query(``)
 
 	defer rows.Close()
 
@@ -96,23 +88,23 @@ func (c *Connection) GetGroups(abtestID int) []abtest.Group {
 		var group abtest.Group
 		rows.Scan(&group.Id, &group.Proportion)
 		groups = append(groups, group)
-	}
+	}*/
 
 	return groups
 }
 
 func (c *Connection) GetSegments(abtestID int) []abtest.Segment {
 
-	rows := c.Query(``)
+	segments := []abtest.Segment{}
+	/*rows := c.Query(``)
 
 	defer rows.Close()
 
-	segments := []abtest.Segment{}
 	for rows.Next() {
 		var seg abtest.Segment
 		rows.Scan(&seg.Type, &seg.Value, &seg.Min, &seg.Max)
 		segments = append(segments, seg)
-	}
+	}*/
 	return segments
 
 }
@@ -123,7 +115,8 @@ func (c *Connection) GetSegments(abtestID int) []abtest.Segment {
 
 func (c *Connection) GetCountries(date, device string) []abtest.Abtest {
 
-	tpl := template.Must(template.New("query").Parse(`
+	abtests := []abtest.Abtest{}
+	/*tpl := template.Must(template.New("query").Parse(`
 		`))
 
 	query := bytes.Buffer{}
@@ -170,7 +163,7 @@ func (c *Connection) GetCountries(date, device string) []abtest.Abtest {
 		new_abtest.Sites = sites
 
 		abtests = append(abtests, new_abtest)
-	}
+	}*/
 
 	return abtests
 }
@@ -181,7 +174,8 @@ func (c *Connection) GetCountries(date, device string) []abtest.Abtest {
 
 func (c *Connection) GetAbtest(id string) abtest.Abtest {
 
-	dataRows := c.Query(``)
+	var abtest abtest.Abtest
+	/*dataRows := c.Query(``)
 
 	defer dataRows.Close()
 
@@ -198,7 +192,7 @@ func (c *Connection) GetAbtest(id string) abtest.Abtest {
 	}
 
 	sites := strings.Split(s, ",")
-	abtest.Sites = sites
+	abtest.Sites = sites*/
 
 	return abtest
 }

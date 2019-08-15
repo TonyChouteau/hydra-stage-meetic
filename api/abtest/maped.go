@@ -1,7 +1,6 @@
 package abtest
 
 import (
-	"database/sql"
 	"fmt"
 	"regexp"
 	"strconv"
@@ -40,7 +39,7 @@ func GetCountries() []string {
 }
 
 type RepositoryMaped interface { // Conection type interface
-	GetConnection() *sql.DB
+	GetConnection() string
 	GetCountries(string, string) []Abtest
 	GetGroups(int) []Group
 	GetSegments(int) []Segment

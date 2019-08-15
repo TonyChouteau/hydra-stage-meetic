@@ -1,7 +1,6 @@
 package abtest
 
 import (
-	"database/sql"
 	"fmt"
 	"sync"
 	"time"
@@ -35,7 +34,7 @@ type Abtests struct {
 }
 
 type RepositoryABtests interface { // Conection type interface
-	GetConnection() *sql.DB
+	GetConnection() string
 	Count(string, string, string, string) int
 	GetActiveAbtests(int, int, string, string, string, string) []Abtest
 	GetSites(int) []string
