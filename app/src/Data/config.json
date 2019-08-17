@@ -3,5 +3,5 @@
             "List",  
             "Map"
         ],
-    "vpsFetchAdress": "https://51:75:20:218:8080"
+    "vpsFetchAdress": "51:75:20:218:8080"
 }
