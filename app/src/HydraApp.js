@@ -80,13 +80,6 @@ class HydraApp extends Component
     +(this.state.searchByName!==""?"&byname="+this.state.searchByName:"")
     +(this.state.searchByStart!==""?"&bystart="+this.state.searchByStart.split("-").reverse().join("-"):"")
     +(this.state.searchByEnd!==""?"&byend="+this.state.searchByEnd.split("-").reverse().join("-"):""))*/
-    let myHeaders = new Headers();
-    myHeaders.append('Access-Control-Allow-Origin', '*');
-
-    let myInit = { method: 'GET',
-               headers: myHeaders,
-               mode: 'cors',
-               cache: 'default' };
 
     return (
       fetch(config.vpsFetchAdress+"/abtests?offset="+this.state.offset
@@ -95,7 +88,7 @@ class HydraApp extends Component
             +(this.state.searchByName!==""?"&byname="+this.state.searchByName:"")
             +(this.state.searchByStart!==""?"&bystart="+this.state.searchByStart.split("-").reverse().join("-"):"")
             +(this.state.searchByEnd!==""?"&byend="+this.state.searchByEnd.split("-").reverse().join("-"):""),
-	    myInit)
+	    {mode: 'no-cors'})
       .then(response => response.json())
       .then((jsonData) => {
         // jsonData is a parser json object received from url
