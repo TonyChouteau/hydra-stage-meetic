@@ -3,5 +3,5 @@
             "List",  
             "Map"
         ],
-    "vpsFetchAdress": "https://vps.tonychouteau.fr:8080"
+    "vpsFetchAdress": "vps.tonychouteau.fr:8080"
 }
