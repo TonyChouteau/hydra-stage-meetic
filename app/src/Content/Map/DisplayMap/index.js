@@ -7,6 +7,8 @@ import MapTable from "../MapTable"
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 
+import config from '../../../Data/config.json';
+
 //import Yes from '@material-ui/icons/MapRounded';
 //import No from '@material-ui/icons/MapRounded';
 
@@ -127,7 +129,7 @@ function DisplayMap(props)
     }
 
     return (
-      fetch("http://vps.tonychouteau.fr:8080/maped-abtests?"+
+      fetch(config.vpsFetchAdress+"/maped-abtests?"+
       (date!==""?"date="+date.split("-").reverse().join("-"):"")+"&device="+device)
       .then(response => response.json())
       .then((jsonData) => {

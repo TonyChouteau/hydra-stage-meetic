@@ -82,7 +82,7 @@ class HydraApp extends Component
     +(this.state.searchByEnd!==""?"&byend="+this.state.searchByEnd.split("-").reverse().join("-"):""))*/
     
     return (
-      fetch("http://vps.tonychouteau.fr:8080/abtests?offset="+this.state.offset
+      fetch(config.vpsFetchAdress+"/abtests?offset="+this.state.offset
             +"&limit="+this.state.limit
             +(id!==""?"&byid="+id:"")
             +(this.state.searchByName!==""?"&byname="+this.state.searchByName:"")

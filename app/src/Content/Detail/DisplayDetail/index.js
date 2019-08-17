@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
 import PostFileUI from '../PostFileUI';
+import config from '../../../Data/config.json';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -59,7 +60,7 @@ function DisplayDetail(props)
   {
     const l = props.history.location.pathname
     return (
-      fetch("http://vps.tonychouteau.fr:8080/abtest/"+parseInt(l.substring(8),10))
+      fetch(config.vpsFetchAdress+"/abtest/"+parseInt(l.substring(8),10))
       .then(response => response.json())
       .then((jsonData) => {
         // jsonData is a parser json object received from url

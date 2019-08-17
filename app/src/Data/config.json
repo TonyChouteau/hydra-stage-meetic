@@ -2,5 +2,6 @@
     "routingList": [
             "List",  
             "Map"
-        ]
+        ],
+    "vpsFetchAdress": "https://vps.tonychouteau.fr:8080"
 }
