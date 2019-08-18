@@ -80,19 +80,20 @@ class HydraApp extends Component
     +(this.state.searchByName!==""?"&byname="+this.state.searchByName:"")
     +(this.state.searchByStart!==""?"&bystart="+this.state.searchByStart.split("-").reverse().join("-"):"")
     +(this.state.searchByEnd!==""?"&byend="+this.state.searchByEnd.split("-").reverse().join("-"):""))*/
+    console.log(config);
+    console.log(config.vpsFetchAddress);
 
     return (
-      fetch(config.vpsFetchAdress+"/abtests?offset="+this.state.offset
+      fetch(config.vpsFetchAddress+"/abtests?offset="+this.state.offset
             +"&limit="+this.state.limit
             +(id!==""?"&byid="+id:"")
             +(this.state.searchByName!==""?"&byname="+this.state.searchByName:"")
             +(this.state.searchByStart!==""?"&bystart="+this.state.searchByStart.split("-").reverse().join("-"):"")
-            +(this.state.searchByEnd!==""?"&byend="+this.state.searchByEnd.split("-").reverse().join("-"):""),
-	    {mode: 'no-cors'})
+            +(this.state.searchByEnd!==""?"&byend="+this.state.searchByEnd.split("-").reverse().join("-"):""))
       .then(response => response.json())
       .then((jsonData) => {
         // jsonData is a parser json object received from url
-        //console.log(jsonData, jsonData.abtests.data !== null)
+        console.log(jsonData)
         
         this.setState({count : jsonData.count})
 
