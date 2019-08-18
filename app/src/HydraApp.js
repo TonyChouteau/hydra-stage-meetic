@@ -22,6 +22,7 @@ class HydraApp extends Component
   constructor(props)
   {
     super(props);
+    document.title = "Hydra - Meetic A/B Tests Manager";
 
     this.history = createBrowserHistory();
     this.location = this.history.location;
