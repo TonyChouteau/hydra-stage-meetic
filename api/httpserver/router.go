@@ -75,6 +75,8 @@ func (api *API) abtestsToJson(c *gin.Context) {
 
 	abtests := abtest.Abtests{Title: title, Data: data}
 
+	fmt.Println(abtests)
+
 	c.JSON(200, gin.H{
 		"abtests": abtests,
 		"count":   count,
@@ -106,9 +108,14 @@ func (api *API) detailedToJson(c *gin.Context) {
 }
 
 func (api *API) postAnalysis(c *gin.Context) {
-
+        
+        fmt.Println("Test")
+        
 	id := c.Param("id")
-	file, _ := c.FormFile("file")
+	file, err := c.FormFile("file")
+	fmt.Println(err)
+        fmt.Println(file==nil)
+        fmt.Println(file.Filename)
 
 	fileFormat := "pdf"
 
@@ -128,7 +135,7 @@ func (api *API) postAnalysis(c *gin.Context) {
 		c.SaveUploadedFile(file, dir+"/analysis_"+id+fileFormat)
 	} else if !strings.Contains(file.Filename, fileFormat) {
 		fmt.Println("The file must be in a '" + fileFormat + "' format !")
-	} else {
+	}else {
 		fmt.Println("No file uploaded")
 	}
 }

@@ -11,6 +11,8 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 
+import config from '../../../Data/config.json';
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -64,14 +66,11 @@ function PostFileUI(props)
 
 	function handleUpload()
 	{
-    fetch('http://192.168.197.78:8080/abtest/'+props.id+'/analysis', { // Your POST endpoint
+    let a = new FormData();
+    a.append("file",file);
+    fetch(config.vpsFetchAddress+'/abtest/'+props.id+'/analysis', { // Your POST endpoint
     method: 'POST',
-    headers: {
-      // Content-Type may need to be completely **omitted**
-      // or you may need something
-      'Content-Type': 'multipart/form-data',
-    },
-      body: file // This is your file object
+      body: a // This is your file object
     }).then(
       response => response.json() // if the response is a JSON object
     ).then(

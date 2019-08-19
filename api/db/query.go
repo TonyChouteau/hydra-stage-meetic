@@ -50,7 +50,14 @@ func (c *Connection) GetActiveAbtests(offset int, limit int, id string, name str
 		fmt.Println(err)
 	}
 
-	return abtests.Data
+	abtestsFilter := []abtest.Abtest{}
+	for i, a := range abtests.Data{
+		if (i >= offset && i < offset+limit) {
+			abtestsFilter = append(abtestsFilter, a)
+		}
+	}
+
+	return abtestsFilter
 }
 
 //=============================

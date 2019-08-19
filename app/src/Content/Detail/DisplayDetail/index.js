@@ -60,7 +60,7 @@ function DisplayDetail(props)
   {
     const l = props.history.location.pathname
     return (
-      fetch(config.vpsFetchAdress+"/abtest/"+parseInt(l.substring(8),10))
+      fetch(config.vpsFetchAddress+"/abtest/"+parseInt(l.substring(8),10))
       .then(response => response.json())
       .then((jsonData) => {
         // jsonData is a parser json object received from url
