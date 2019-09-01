@@ -81,8 +81,8 @@ class HydraApp extends Component
     +(this.state.searchByName!==""?"&byname="+this.state.searchByName:"")
     +(this.state.searchByStart!==""?"&bystart="+this.state.searchByStart.split("-").reverse().join("-"):"")
     +(this.state.searchByEnd!==""?"&byend="+this.state.searchByEnd.split("-").reverse().join("-"):""))*/
-    console.log(config);
-    console.log(config.vpsFetchAddress);
+    //console.log(config);
+    //console.log(config.vpsFetchAddress);
 
     return (
       fetch(config.vpsFetchAddress+"/abtests?offset="+this.state.offset
@@ -94,7 +94,7 @@ class HydraApp extends Component
       .then(response => response.json())
       .then((jsonData) => {
         // jsonData is a parser json object received from url
-        console.log(jsonData)
+        //console.log(jsonData)
         
         this.setState({count : jsonData.count})
 
@@ -166,8 +166,7 @@ class HydraApp extends Component
 
   handleRefresh()
   {
-    this.setState({endOfData : false, offset: 0})
-    this.GetTable();
+    this.setState({endOfData : false, offset: 0}, this.GetTable);
   }
 
   endOfScroll()
