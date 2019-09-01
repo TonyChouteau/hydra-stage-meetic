@@ -53,10 +53,10 @@ func (api *API) abtestsToJson(c *gin.Context) {
 	end := c.DefaultQuery("byend", "")
 
 	if start == "" {
-		start = "01-01-0001"
+		start = "0001-01-01"
 	}
 	if end == "" {
-		end = "01-01-9999"
+		end = "9999-01-01"
 	}
 
 	//fmt.Println(offset, "-", limit, "-", id, "-", name, "-", start, "-", end)

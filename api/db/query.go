@@ -6,6 +6,7 @@ import (
 	"os"
 	"io/ioutil"
 	"strconv"
+	"strings"
 
 	"github.com/TonyChouteau/hydra/api/abtest"
 )
@@ -50,8 +51,18 @@ func (c *Connection) GetActiveAbtests(offset int, limit int, id string, name str
 		fmt.Println(err)
 	}
 
+	fmt.Println(start, end)
+	fmt.Println(abtests.Data[0].From, abtests.Data[0].To)
+
+	abtestsSearched := []abtest.Abtest{}
+	for _, abtest := range abtests.Data {
+		if (strings.Contains(strconv.Itoa(abtest.Id), id) && strings.Contains(abtest.Description, name) && start < abtest.From && end > abtest.To){
+			abtestsSearched = append(abtestsSearched, abtest);
+		}
+	}
+
 	abtestsFilter := []abtest.Abtest{}
-	for i, a := range abtests.Data{
+	for i, a := range abtestsSearched{
 		if (i >= offset && i < offset+limit) {
 			abtestsFilter = append(abtestsFilter, a)
 		}

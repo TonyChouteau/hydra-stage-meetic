@@ -89,8 +89,8 @@ class HydraApp extends Component
             +"&limit="+this.state.limit
             +(id!==""?"&byid="+id:"")
             +(this.state.searchByName!==""?"&byname="+this.state.searchByName:"")
-            +(this.state.searchByStart!==""?"&bystart="+this.state.searchByStart.split("-").reverse().join("-"):"")
-            +(this.state.searchByEnd!==""?"&byend="+this.state.searchByEnd.split("-").reverse().join("-"):""))
+            +(this.state.searchByStart!==""?"&bystart="+this.state.searchByStart:"")
+            +(this.state.searchByEnd!==""?"&byend="+this.state.searchByEnd:""))
       .then(response => response.json())
       .then((jsonData) => {
         // jsonData is a parser json object received from url
