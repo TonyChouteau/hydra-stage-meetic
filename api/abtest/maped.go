@@ -60,7 +60,6 @@ func (s *MapedService) GetMaped(date string, device string) MapedCountries {
 
 	abtests := s.db.GetCountries(date, device)
 
-
 	fmt.Print("\nLoad abtests and groups : ")
 	fmt.Println(time.Now().Sub(timeStart))
 	timeStart = time.Now()

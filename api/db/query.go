@@ -16,7 +16,7 @@ import (
 //=============================
 
 func (c *Connection) Count(id string, name string, start string, end string) int {
-	
+
 	jsonFile, err := os.Open("abtests.json")
 	if err != nil {
 		fmt.Println(err)
@@ -51,12 +51,12 @@ func (c *Connection) GetActiveAbtests(offset int, limit int, id string, name str
 		fmt.Println(err)
 	}
 
-	fmt.Println(start, end)
-	fmt.Println(abtests.Data[0].From, abtests.Data[0].To)
+	//fmt.Println(start, end)
+	//fmt.Println(abtests.Data[0].From, abtests.Data[0].To)
 
 	abtestsSearched := []abtest.Abtest{}
 	for _, abtest := range abtests.Data {
-		if (strings.Contains(strconv.Itoa(abtest.Id), id) && strings.Contains(abtest.Description, name) && start < abtest.From && end > abtest.To){
+		if (strings.Contains(strconv.Itoa(abtest.Id), id) && strings.Contains(strings.ToLower(abtest.Description), strings.ToLower(name)) && start < abtest.From && end > abtest.To){
 			abtestsSearched = append(abtestsSearched, abtest);
 		}
 	}
@@ -77,7 +77,25 @@ func (c *Connection) GetActiveAbtests(offset int, limit int, id string, name str
 
 func (c *Connection) GetCountries(date, device string) []abtest.Abtest {
 
-	abtests := []abtest.Abtest{}
+	jsonFile, err := os.Open("abtests.json")
+	if err != nil {
+		fmt.Println("err")
+	}
+	byteValue, _ := ioutil.ReadAll(jsonFile)
+
+	abtests := abtest.Abtests{}
+	err = json.Unmarshal(byteValue, &abtests)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	abtestsFilter := []abtest.Abtest{}
+	for _, abtest := range abtests.Data {
+		if (abtest.From < date && abtest.To > date && strings.Contains(strings.Join(abtest.Sites,","),device)) {
+			abtestsFilter = append(abtestsFilter, abtest)
+		}
+	}
+
 	/*tpl := template.Must(template.New("query").Parse(`
 		`))
 
@@ -127,7 +145,7 @@ func (c *Connection) GetCountries(date, device string) []abtest.Abtest {
 		abtests = append(abtests, new_abtest)
 	}*/
 
-	return abtests
+	return abtestsFilter
 }
 
 //=============================

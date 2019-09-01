@@ -75,7 +75,7 @@ func (api *API) abtestsToJson(c *gin.Context) {
 
 	abtests := abtest.Abtests{Title: title, Data: data}
 
-	fmt.Println(abtests)
+	//fmt.Println(abtests)
 
 	c.JSON(200, gin.H{
 		"abtests": abtests,

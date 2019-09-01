@@ -130,7 +130,7 @@ function DisplayMap(props)
 
     return (
       fetch(config.vpsFetchAdress+"/maped-abtests?"+
-      (date!==""?"date="+date.split("-").reverse().join("-"):"")+"&device="+device)
+      (date!==""?"date="+date:"")+"&device="+device)
       .then(response => response.json())
       .then((jsonData) => {
         // jsonData is a parser json object received from url
