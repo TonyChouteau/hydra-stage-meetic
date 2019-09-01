@@ -85,10 +85,10 @@ func (api *API) abtestsToJson(c *gin.Context) {
 
 func (api *API) mapedToJson(c *gin.Context) {
 
-	dt := time.Now().Format("02-01-2006")
+	dt := time.Now().Format("2006-01-02")
 	device := c.DefaultQuery("device", "wam")
 	date := c.DefaultQuery("date", dt)
-	//fmt.Println("+"+date+"+", device)
+	fmt.Println(date, device)
 
 	maped := api.MappedService.GetMaped(date, device)
 	keys := abtest.GetCountries()
