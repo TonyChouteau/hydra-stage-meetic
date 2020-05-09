@@ -1,4 +1,4 @@
-// vim: set ft=jsx:
+// vim: syntax=JSX
 
 // React Component
 import React, { Component } from 'react';
