@@ -1,4 +1,1 @@
-app/src/Content/*.js linguist-language=JSX
-app/src/Data/*.js linguist-language=JSX
-app/src/Header/*.js linguist-language=JSX
-app/src/HydraApp.js linguist-language=JSX
+*.js linguist-language=JSX
