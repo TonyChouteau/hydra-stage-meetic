@@ -8,4 +8,4 @@ En cliquant sur un A/B Test (dans la page "List" ou la page "Map"), une page de 
 
 Les connections entre le front et l'API en back utilisent le protocole REST.
 
-Démo disponible : http://hydra.tonychouteau.fr
+Démo disponible : http://vps.tonychouteau.fr/hydra
